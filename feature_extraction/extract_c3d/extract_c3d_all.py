@@ -70,4 +70,3 @@ if __name__ == '__main__':
     video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
     pool = Pool(processes=worker_cnt, initializer=build_net)
     pool.map(eval_video, video_path_list)
-
