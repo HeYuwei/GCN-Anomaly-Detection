@@ -48,7 +48,7 @@ def get_auc(ab_score):
             #    continue
             cur_ab = ab_score[vid]
             ab_same_size = np.zeros_like(anomaly_score)
-            print len(ab_same_size), len(cur_ab)
+            print(len(ab_same_size), len(cur_ab))
             for i in range(len(ab_same_size)):
                 ab_same_size[i] = cur_ab[i]
 
