@@ -12,7 +12,8 @@ worker_cnt = 36
 
 score_name = "fc-action-ucf_crimes"
 rgb_prefix = "img_"
-video_folder = "../ucf_crimes_rgb/"
+# video_folder = "../ucf_crimes_rgb/"
+video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
 modality = "c3d"
 deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
 
@@ -22,7 +23,8 @@ from pyActionRecog.action_caffe import CaffeNet
 
 step = 16
 dense_sample = True
-output_folder = "../c3d_features/"
+# output_folder = "../c3d_features/"
+output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 
