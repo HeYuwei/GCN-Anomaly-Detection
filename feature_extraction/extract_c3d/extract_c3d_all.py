@@ -28,6 +28,7 @@ output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 
+
 def build_net():
     global net
     gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
