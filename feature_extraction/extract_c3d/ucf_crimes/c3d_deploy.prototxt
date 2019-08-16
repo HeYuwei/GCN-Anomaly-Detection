@@ -1,3 +1,5 @@
+solver_mode:CPU
+
 name: "C3D"
 mem_param {
   optimize_test: true
