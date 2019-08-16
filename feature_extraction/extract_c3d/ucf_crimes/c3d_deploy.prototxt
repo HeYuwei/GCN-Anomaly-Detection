@@ -1,9 +1,8 @@
-
 name: "C3D"
-mem_param {
-  optimize_test: true
-  optimize_train: true
-}
+#mem_param {
+#  optimize_test: true
+#  optimize_train: true
+#}
 input: "data"
 input_shape {
   dim: 10
