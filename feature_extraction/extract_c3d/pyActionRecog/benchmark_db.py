@@ -2,7 +2,7 @@ import glob
 import fnmatch
 import os
 import random
-from anet_db import ANetDB
+from .anet_db import ANetDB
 
 
 def parse_directory(path, rgb_prefix='img_', flow_x_prefix='flow_x_', flow_y_prefix='flow_y_'):
