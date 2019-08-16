@@ -1,5 +1,5 @@
-from benchmark_db import *
-from MatInfo import *
+from .benchmark_db import *
+from .MatInfo import *
 
 split_parsers = dict()
 split_parsers['ucf101'] = parse_ucf_splits
