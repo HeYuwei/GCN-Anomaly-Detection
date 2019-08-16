@@ -9,8 +9,8 @@ import cv2
 
 class CaffeNet(object):
     def __init__(self, net_proto, net_weights, device_id, input_size=None):
-        caffe.set_mode_gpu()
-        caffe.set_device(device_id)
+        # caffe.set_mode_gpu()
+        # caffe.set_device(device_id)
         self._net = caffe.Net(net_proto, net_weights, caffe.TEST)
 
         input_shape = self._net.blobs['data'].data.shape
