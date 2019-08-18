@@ -17,7 +17,7 @@ video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1
 modality = "c3d"
 deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
 
-caffe_path = "../caffe_c3d/"
+caffe_path = "../caffe/caffe_c3d/"
 sys.path.append(os.path.join(caffe_path, "python"))
 from pyActionRecog.action_caffe import CaffeNet
 
@@ -26,7 +26,6 @@ dense_sample = True
 # output_folder = "../c3d_features/"
 output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 caffemodel = "./models/c3d_iter_1000.caffemodel"
-
 
 
 def build_net():
