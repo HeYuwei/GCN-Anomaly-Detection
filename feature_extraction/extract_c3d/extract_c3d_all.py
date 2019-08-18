@@ -17,7 +17,7 @@ video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1
 modality = "c3d"
 deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
 
-caffe_path = "../caffe/caffe_c3d/"
+caffe_path = "../caffe_c3d/"
 
 sys.path.append(os.path.join(caffe_path, "python"))
 from pyActionRecog.action_caffe import CaffeNet
