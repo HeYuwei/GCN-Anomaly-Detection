@@ -20,6 +20,8 @@ deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
 caffe_path = "../caffe_c3d/"
 
 sys.path.append(os.path.join(caffe_path, "python"))
+sys.path.append('/usr/local/include/google/protobuf')
+sys.path.append('/usr/local/lib')
 from pyActionRecog.action_caffe import CaffeNet
 
 step = 16
