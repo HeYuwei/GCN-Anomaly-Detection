@@ -74,5 +74,6 @@ def eval_video(video_frame_path):
 if __name__ == '__main__':
     video_name_list = os.listdir(video_folder)
     video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
-    pool = Pool(processes=worker_cnt, initializer=build_net)
-    pool.map(eval_video, video_path_list)
+    eval_video(video_path_list)
+    # pool = Pool(processes=worker_cnt, initializer=build_net)
+    # pool.map(eval_video, video_path_list)
