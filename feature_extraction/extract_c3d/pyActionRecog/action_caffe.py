@@ -87,6 +87,7 @@ class CaffeNet(object):
 
         if frame_size is not None:
             print('frame size ' + str(frame_size))
+            print('x shape ' + str(frame[0].shape))
             frame = fast_list2arr([cv2.resize(x, frame_size) for x in frame])
         else:
             frame = fast_list2arr(frame)
