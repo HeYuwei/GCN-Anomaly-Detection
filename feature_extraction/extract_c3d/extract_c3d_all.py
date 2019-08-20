@@ -16,7 +16,7 @@ rgb_prefix = ""
 # video_folder = "../ucf_crimes_rgb/"
 video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
 modality = "c3d"
-deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
+deploy_file = "./ucf_crimes/c3d_feature.prototxt"
 
 caffe_path = "../caffe_c3d/"
 
@@ -71,6 +71,7 @@ def eval_video(video_frame_list):
                             # print('v name ' + os.path.join(video_frame_path, name))
                             frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
                     scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
+                    print('feature shape ' + str(scores.shape))
                 else:
                     print("Sparse sampling has yet to be done.")
             frame_scores.append(scores)
