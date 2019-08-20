@@ -2,10 +2,11 @@
 # -*- coding:utf8 -*-
 
 import os
-import sys
+os.environ["CUDA_VISIBLE_DEVICES"]='0'
 import cv2
 import numpy as np
 from multiprocessing import Pool, current_process
+
 
 gpu_list = [0, 1, 2, 3]
 worker_cnt = 36
