@@ -77,7 +77,7 @@ def eval_video(video_frame_list):
                 else:
                     print("Sparse sampling has yet to be done.")
             frame_scores.append(scores)
-        np.savez(output_file, scores=frame_scores, begin_idx=frame_ticks)
+        np.savez(output_file, feautres=frame_scores, begin_idx=frame_ticks)
         print("video {} done".format(vid))
 
 
