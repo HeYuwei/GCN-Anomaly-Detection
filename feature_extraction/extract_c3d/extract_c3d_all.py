@@ -57,7 +57,7 @@ def eval_video(video_frame_list):
         if os.path.isfile(output_file):
             print("{} exists!".format(output_file))
             return
-        frame_ticks = range(1, frame_cnt + 1, step)
+        frame_ticks = range(frame_cnt, step)
         frame_scores = []
         for tick in frame_ticks:
             if modality == "c3d":
