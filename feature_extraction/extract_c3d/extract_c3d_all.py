@@ -15,7 +15,9 @@ worker_cnt = 1
 score_name = "fc6"
 rgb_prefix = ""
 # video_folder = "../ucf_crimes_rgb/"
-video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
+# video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
+root_video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/"
+root_output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 modality = "c3d"
 deploy_file = "./ucf_crimes/c3d_feature.prototxt"
 
@@ -29,7 +31,6 @@ from pyActionRecog.action_caffe import CaffeNet
 step = 16
 dense_sample = True
 # output_folder = "../c3d_features/"
-output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 
@@ -40,7 +41,7 @@ def build_net():
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
-def eval_video(video_frame_list):
+def eval_video(video_frame_list,output_folder):
     # global net
     net = build_net()
     print('net is loaded')
@@ -82,8 +83,19 @@ def eval_video(video_frame_list):
 
 
 if __name__ == '__main__':
-    video_name_list = os.listdir(video_folder)
-    video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
-    eval_video(video_path_list)
+
+    for root,dirs,files in os.walk(root_video_folder):
+        for d in dirs:
+            if d.endswith('x264'):
+                video_folder = root
+                video_name_list = os.listdir(video_folder)
+                video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
+                output_folder = video_folder.replace(root_video_folder,root_output_folder)
+                eval_video(video_path_list,output_folder)
+            else:
+                opath = os.path.join(root,d)
+                npath = opath.replace(root_video_folder, root_output_folder)
+                os.mkdir(npath)
+
     # pool = Pool(processes=worker_cnt, initializer=build_net)
     # pool.map(eval_video, video_path_list)
