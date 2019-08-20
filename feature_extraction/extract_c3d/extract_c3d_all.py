@@ -2,13 +2,13 @@
 # -*- coding:utf8 -*-
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+# os.environ["CUDA_VISIBLE_DEVICES"]='0'
 import cv2
 import numpy as np
 from multiprocessing import Pool, current_process
 
 
-gpu_list = [0]
+gpu_list = [0,1,2,3]
 worker_cnt = 36
 
 score_name = "fc-action-ucf_crimes"
@@ -34,8 +34,8 @@ caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 def build_net():
     # global net
-    # gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
-    gpu_id = 0
+    gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
+    # gpu_id = 0
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
