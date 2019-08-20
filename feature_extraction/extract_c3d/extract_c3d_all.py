@@ -8,7 +8,7 @@ import numpy as np
 from multiprocessing import Pool, current_process
 
 
-gpu_list = [0, 1, 2, 3]
+gpu_list = [0]
 worker_cnt = 36
 
 score_name = "fc-action-ucf_crimes"
