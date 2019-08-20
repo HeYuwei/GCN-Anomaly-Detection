@@ -86,8 +86,8 @@ class CaffeNet(object):
     def predict_single_c3d_rgb_stack(self, frame, score_name, over_sample=True, frame_size=None):
 
         if frame_size is not None:
-            print('frame size ' + str(frame_size))
-            print('x shape ' + str(frame[0].shape))
+            # print('frame size ' + str(frame_size))
+            # print('x shape ' + str(frame[0].shape))
             frame = fast_list2arr([cv2.resize(x, frame_size) for x in frame])
         else:
             frame = fast_list2arr(frame)

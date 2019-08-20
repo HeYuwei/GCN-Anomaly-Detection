@@ -67,6 +67,7 @@ def eval_video(video_frame_list):
                         frame_idx = [min(frame_cnt, tick + i + offset) for offset in range(stack_depth)]
                         for idx in frame_idx:
                             name = "{}{:06d}.jpg".format(rgb_prefix, idx)
+                            print('v name ' + os.path.join(video_frame_path, name))
                             frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
                     scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
                 else:
