@@ -57,7 +57,7 @@ def eval_video(video_frame_list):
         output_file = os.path.join(output_folder, vid + "_c3d" + ".npz")
         if os.path.isfile(output_file):
             print("{} exists!".format(output_file))
-            return
+            # return
         frame_ticks = range(1,frame_cnt+1, step)
         frame_scores = []
         for tick in frame_ticks:
