@@ -33,13 +33,15 @@ caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 
 def build_net():
-    global net
+    # global net
     gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
-
+    return net
 
 def eval_video(video_frame_path):
-    global net
+    # global net
+    net = build_net()
+    print('net is loaded')
     vid = os.path.basename(video_frame_path)
     print("video {} doing".format(vid))
     all_files = os.listdir(video_frame_path)
