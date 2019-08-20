@@ -91,6 +91,8 @@ if __name__ == '__main__':
                 video_name_list = os.listdir(video_folder)
                 video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
                 output_folder = video_folder.replace(root_video_folder,root_output_folder)
+                print('video folder ' + video_folder)
+                print('output folder ' + output_folder)
                 eval_video(video_path_list,output_folder)
             else:
                 opath = os.path.join(root,d)
