@@ -1,6 +1,8 @@
 import sys
-
-import caffe
+try:
+    import caffe
+except:
+    import caffe
 from caffe.io import oversample
 import numpy as np
 from utils.io import fast_list2arr, flow_stack_oversample, c3d_flow_stack_oversample, c3d_rgb_stack_oversample
