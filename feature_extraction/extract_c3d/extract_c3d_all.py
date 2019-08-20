@@ -39,39 +39,41 @@ def build_net():
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
-def eval_video(video_frame_path):
+def eval_video(video_frame_list):
     # global net
     net = build_net()
     print('net is loaded')
-    vid = os.path.basename(video_frame_path)
-    print("video {} doing".format(vid))
-    all_files = os.listdir(video_frame_path)
-    frame_cnt = len(all_files)
-    if modality == "c3d":
-        stack_depth = 16
-    else:
-        raise ValueError(modality)
-    output_file = os.path.join(os.path.join(output_folder, os.path.basename(caffemodel).replace(".caffemodel","")), vid + "_c3d" + ".npz")
-    if os.path.isfile(output_file):
-        print("{} exists!".format(output_file))
-        return
-    frame_ticks = range(1, frame_cnt + 1, step)
-    frame_scores = []
-    for tick in frame_ticks:
+
+    for video_frame_path in video_frame_list:
+        vid = os.path.basename(video_frame_path)
+        print("video {} doing".format(vid))
+        all_files = os.listdir(video_frame_path)
+        frame_cnt = len(all_files)
         if modality == "c3d":
-            if dense_sample:
-                frames = []
-                for i in range(0, step, stack_depth):
-                    frame_idx = [min(frame_cnt, tick + i + offset) for offset in range(stack_depth)]
-                    for idx in frame_idx:
-                        name = "{}{:06d}.jpg".format(rgb_prefix, idx)
-                        frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
-                scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
-            else:
-                print("Sparse sampling has yet to be done.")
-        frame_scores.append(scores)
-    np.savez(output_file, scores=frame_scores, begin_idx=frame_ticks)
-    print("video {} done".format(vid))
+            stack_depth = 16
+        else:
+            raise ValueError(modality)
+        output_file = os.path.join(os.path.join(output_folder, os.path.basename(caffemodel).replace(".caffemodel","")), vid + "_c3d" + ".npz")
+        if os.path.isfile(output_file):
+            print("{} exists!".format(output_file))
+            return
+        frame_ticks = range(1, frame_cnt + 1, step)
+        frame_scores = []
+        for tick in frame_ticks:
+            if modality == "c3d":
+                if dense_sample:
+                    frames = []
+                    for i in range(0, step, stack_depth):
+                        frame_idx = [min(frame_cnt, tick + i + offset) for offset in range(stack_depth)]
+                        for idx in frame_idx:
+                            name = "{}{:06d}.jpg".format(rgb_prefix, idx)
+                            frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
+                    scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
+                else:
+                    print("Sparse sampling has yet to be done.")
+            frame_scores.append(scores)
+        np.savez(output_file, scores=frame_scores, begin_idx=frame_ticks)
+        print("video {} done".format(vid))
 
 
 if __name__ == '__main__':
