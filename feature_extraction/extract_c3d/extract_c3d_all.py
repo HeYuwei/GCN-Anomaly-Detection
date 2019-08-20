@@ -53,7 +53,8 @@ def eval_video(video_frame_list):
             stack_depth = 16
         else:
             raise ValueError(modality)
-        output_file = os.path.join(os.path.join(output_folder, os.path.basename(caffemodel).replace(".caffemodel","")), vid + "_c3d" + ".npz")
+        # output_file = os.path.join(os.path.join(output_folder, os.path.basename(caffemodel).replace(".caffemodel","")), vid + "_c3d" + ".npz")
+        output_file = os.path.join(output_folder, vid + "_c3d" + ".npz")
         if os.path.isfile(output_file):
             print("{} exists!".format(output_file))
             return
