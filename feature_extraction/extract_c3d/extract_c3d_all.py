@@ -84,25 +84,31 @@ def eval_video(video_frame_list,output_folder):
 
 
 if __name__ == '__main__':
-    # v_list = ['Training-Normal-Videos-Part-1']
+    v_list = ['Training-Normal-Videos-Part-1','Training-Normal-Videos-Part-2','Training-Normal-Videos-Part-3','Training-Normal-Videos-Part-4']
+    video_folder = os.path.join(root_video_folder,v_list[gpu_id])
+    video_name_list = os.listdir(video_folder)
+    video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
+    output_folder = video_folder.replace(root_video_folder,root_output_folder)
+    print('video folder ' + video_folder)
+    print('output folder ' + output_folder)
+    eval_video(video_path_list,output_folder)
 
 
-
-    for root,dirs,files in os.walk(root_video_folder):
-        for d in dirs:
-            if d.endswith('x264'):
-                video_folder = root
-                video_name_list = os.listdir(video_folder)
-                video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
-                output_folder = video_folder.replace(root_video_folder,root_output_folder)
-                print('video folder ' + video_folder)
-                print('output folder ' + output_folder)
-                eval_video(video_path_list,output_folder)
-                break
-            else:
-                opath = os.path.join(root,d)
-                npath = opath.replace(root_video_folder, root_output_folder)
-                os.mkdir(npath)
+    # for root,dirs,files in os.walk(root_video_folder):
+    #     for d in dirs:
+    #         if d.endswith('x264'):
+    #             video_folder = root
+    #             video_name_list = os.listdir(video_folder)
+    #             video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
+    #             output_folder = video_folder.replace(root_video_folder,root_output_folder)
+    #             print('video folder ' + video_folder)
+    #             print('output folder ' + output_folder)
+    #             eval_video(video_path_list,output_folder)
+    #             break
+    #         else:
+    #             opath = os.path.join(root,d)
+    #             npath = opath.replace(root_video_folder, root_output_folder)
+    #             os.mkdir(npath)
 
     # pool = Pool(processes=worker_cnt, initializer=build_net)
     # pool.map(eval_video, video_path_list)
