@@ -92,6 +92,10 @@ def ex_feature(gpu_id):
         video_name_list = os.listdir(video_folder)
         video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
         output_folder = video_folder.replace(root_video_folder, root_output_folder)
+
+        if not os.path.exists(output_folder):
+            os.mkdir(output_folder)
+
         print('video folder ' + video_folder)
         print('output folder ' + output_folder)
         # return ;
