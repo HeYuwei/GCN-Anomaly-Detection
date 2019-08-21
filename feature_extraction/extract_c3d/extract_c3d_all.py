@@ -2,7 +2,7 @@
 # -*- coding:utf8 -*-
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+# os.environ["CUDA_VISIBLE_DEVICES"]='0'
 import cv2
 import numpy as np
 from multiprocessing import Pool, current_process
@@ -37,7 +37,7 @@ caffemodel = "./models/c3d_iter_1000.caffemodel"
 def build_net():
     # global net
     # gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
-    gpu_id = 0
+    gpu_id = 1
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
@@ -47,7 +47,7 @@ def eval_video(video_frame_list,output_folder):
     print('net is loaded')
 
     for video_frame_path in video_frame_list:
-        vid = os.path.basename(video_frame_path)
+        vid = os.path.basename(video_flsrame_path)
         print("video {} doing".format(vid))
         all_files = os.listdir(video_frame_path)
         frame_cnt = len(all_files)
@@ -83,6 +83,7 @@ def eval_video(video_frame_list,output_folder):
 
 
 if __name__ == '__main__':
+    v_list = ['Training-Normal-Videos-Part-1']
 
     for root,dirs,files in os.walk(root_video_folder):
         for d in dirs:

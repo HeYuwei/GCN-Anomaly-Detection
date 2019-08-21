@@ -1,6 +1,6 @@
 import sys
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+# os.environ["CUDA_VISIBLE_DEVICES"]='0'
 import caffe
 from caffe.io import oversample
 import numpy as np
