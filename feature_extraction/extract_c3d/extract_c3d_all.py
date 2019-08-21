@@ -91,6 +91,7 @@ def ex_feature(gpu_id):
     output_folder = video_folder.replace(root_video_folder, root_output_folder)
     print('video folder ' + video_folder)
     print('output folder ' + output_folder)
+    return ;
     eval_video(video_path_list, output_folder, gpu_id)
 
 
