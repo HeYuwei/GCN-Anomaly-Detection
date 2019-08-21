@@ -10,7 +10,7 @@ from multiprocessing import Pool, current_process
 
 # gpu_list = [0,1,2,3]
 worker_cnt = 1
-
+gpu_id = 1
 # score_name = "fc-action-ucf_crimes"
 score_name = "fc6"
 rgb_prefix = ""
@@ -37,7 +37,7 @@ caffemodel = "./models/c3d_iter_1000.caffemodel"
 def build_net():
     # global net
     # gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
-    gpu_id = 1
+    # gpu_id = 1
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
@@ -47,7 +47,7 @@ def eval_video(video_frame_list,output_folder):
     print('net is loaded')
 
     for video_frame_path in video_frame_list:
-        vid = os.path.basename(video_flsrame_path)
+        vid = os.path.basename(video_frame_path)
         print("video {} doing".format(vid))
         all_files = os.listdir(video_frame_path)
         frame_cnt = len(all_files)
@@ -60,6 +60,7 @@ def eval_video(video_frame_list,output_folder):
         if os.path.isfile(output_file):
             print("{} exists!".format(output_file))
             # return
+            break
 
         frame_ticks = range(1,frame_cnt+1, step)
         frame_scores = []
@@ -83,7 +84,9 @@ def eval_video(video_frame_list,output_folder):
 
 
 if __name__ == '__main__':
-    v_list = ['Training-Normal-Videos-Part-1']
+    # v_list = ['Training-Normal-Videos-Part-1']
+
+
 
     for root,dirs,files in os.walk(root_video_folder):
         for d in dirs:
@@ -95,6 +98,7 @@ if __name__ == '__main__':
                 print('video folder ' + video_folder)
                 print('output folder ' + output_folder)
                 eval_video(video_path_list,output_folder)
+                break
             else:
                 opath = os.path.join(root,d)
                 npath = opath.replace(root_video_folder, root_output_folder)
