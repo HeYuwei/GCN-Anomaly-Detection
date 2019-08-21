@@ -10,7 +10,7 @@ from multiprocessing import Pool, current_process
 
 # gpu_list = [0,1,2,3]
 worker_cnt = 1
-gpu_id = 1
+gpu_id = 0
 # score_name = "fc-action-ucf_crimes"
 score_name = "fc6"
 rgb_prefix = ""
