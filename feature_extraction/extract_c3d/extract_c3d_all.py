@@ -5,12 +5,12 @@ import os
 # os.environ["CUDA_VISIBLE_DEVICES"]='0'
 import cv2
 import numpy as np
+from multiprocessing import Process
 from multiprocessing import Pool, current_process
 
 
 # gpu_list = [0,1,2,3]
 worker_cnt = 1
-gpu_id = 2
 # score_name = "fc-action-ucf_crimes"
 score_name = "fc6"
 rgb_prefix = ""
@@ -34,16 +34,16 @@ dense_sample = True
 caffemodel = "./models/c3d_iter_1000.caffemodel"
 
 
-def build_net():
+def build_net(gpu_id):
     # global net
     # gpu_id = gpu_list[current_process()._identity[0] % len(gpu_list)]
     # gpu_id = 1
     net = CaffeNet(deploy_file, caffemodel, gpu_id)
     return net
 
-def eval_video(video_frame_list,output_folder):
+def eval_video(video_frame_list,output_folder,gpu_id):
     # global net
-    net = build_net()
+    net = build_net(gpu_id)
     print('net is loaded')
 
     for video_frame_path in video_frame_list:
@@ -83,17 +83,21 @@ def eval_video(video_frame_list,output_folder):
         print("video {} done".format(vid))
 
 
-if __name__ == '__main__':
-    v_list = ['Training-Normal-Videos-Part-1','Training-Normal-Videos-Part-2','Training-Normal-Videos-Part-3','Training-Normal-Videos-Part-4']
-    video_folder = os.path.join(root_video_folder,v_list[gpu_id])
+def ex_feature(gpu_id):
+    v_list = ['Anomaly-Videos-Part-1', 'Anomaly-Videos-Part-2', 'Anomaly-Videos-Part-3', 'Anomaly-Videos-Part-4']
+    video_folder = os.path.join(root_video_folder, v_list[gpu_id])
     video_name_list = os.listdir(video_folder)
     video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
-    output_folder = video_folder.replace(root_video_folder,root_output_folder)
+    output_folder = video_folder.replace(root_video_folder, root_output_folder)
     print('video folder ' + video_folder)
     print('output folder ' + output_folder)
-    eval_video(video_path_list,output_folder)
+    eval_video(video_path_list, output_folder, gpu_id)
 
 
+if __name__ == '__main__':
+    for i in range(4):
+        p = Process(target=ex_feature,args=(i,))
+        p.start()
     # for root,dirs,files in os.walk(root_video_folder):
     #     for d in dirs:
     #         if d.endswith('x264'):
