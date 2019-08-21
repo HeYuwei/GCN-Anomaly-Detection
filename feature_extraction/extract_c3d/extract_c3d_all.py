@@ -85,14 +85,17 @@ def eval_video(video_frame_list,output_folder,gpu_id):
 
 def ex_feature(gpu_id):
     v_list = ['Anomaly-Videos-Part-1', 'Anomaly-Videos-Part-2', 'Anomaly-Videos-Part-3', 'Anomaly-Videos-Part-4']
-    video_folder = os.path.join(root_video_folder, v_list[gpu_id])
-    video_name_list = os.listdir(video_folder)
-    video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
-    output_folder = video_folder.replace(root_video_folder, root_output_folder)
-    print('video folder ' + video_folder)
-    print('output folder ' + output_folder)
-    return ;
-    eval_video(video_path_list, output_folder, gpu_id)
+    p1 = os.path.join(root_video_folder, v_list[gpu_id])
+    cat_list = os.listdir(p1)
+    for cat in cat_list:
+        video_folder = os.path.join(p1,cat)
+        video_name_list = os.listdir(video_folder)
+        video_path_list = [os.path.join(video_folder, it) for it in video_name_list]
+        output_folder = video_folder.replace(root_video_folder, root_output_folder)
+        print('video folder ' + video_folder)
+        print('output folder ' + output_folder)
+        # return ;
+        eval_video(video_path_list, output_folder, gpu_id)
 
 
 if __name__ == '__main__':
