@@ -102,7 +102,7 @@ def ex_feature(gpu_id):
 
 
 if __name__ == '__main__':
-    for i in range(1):
+    for i in range(3,4):
         p = Process(target=ex_feature,args=(i,))
         p.start()
     # for root,dirs,files in os.walk(root_video_folder):
