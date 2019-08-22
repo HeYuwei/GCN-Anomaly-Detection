@@ -95,6 +95,8 @@ def ex_feature(gpu_id):
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
+    output_folder = '.'
+
     print('video folder ' + video_folder)
     print('output folder ' + output_folder)
     # return ;
