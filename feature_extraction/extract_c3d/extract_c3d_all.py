@@ -17,7 +17,7 @@ rgb_prefix = ""
 # video_folder = "../ucf_crimes_rgb/"
 # video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
 root_video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/"
-root_output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
+root_output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_deploy/"
 modality = "c3d"
 deploy_file = "./ucf_crimes/c3d_feature.prototxt"
 
