@@ -74,6 +74,8 @@ def eval_video(video_frame_list,output_folder,gpu_id):
                             name = "{}{:06d}.jpg".format(rgb_prefix, idx - 1)
                             # print('v name ' + os.path.join(video_frame_path, name))
                             frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
+                    print('frame len ' + str(len(frames)))
+
                     scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
                     print('feature shape ' + str(scores.shape))
                 else:
