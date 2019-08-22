@@ -73,6 +73,7 @@ def eval_video(video_frame_list,output_folder,gpu_id):
                         for idx in frame_idx:
                             name = "{}{:06d}.jpg".format(rgb_prefix, idx - 1)
                             # print('v name ' + os.path.join(video_frame_path, name))
+                            print('name ' + name)
                             frames.append(cv2.imread(os.path.join(video_frame_path, name), cv2.IMREAD_COLOR))
                     print('frame len ' + str(len(frames)))
 
