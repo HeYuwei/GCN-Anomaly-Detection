@@ -144,6 +144,7 @@ if __name__ == '__main__':
                 output_folder_list.append(output_folder)
             else:
                 opath = os.path.join(root,d)
+
                 npath = opath.replace(root_video_folder, root_output_folder)
                 os.mkdir(npath)
 
