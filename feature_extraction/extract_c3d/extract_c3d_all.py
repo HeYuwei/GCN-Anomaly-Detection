@@ -11,8 +11,8 @@ from multiprocessing import Pool, current_process
 
 # gpu_list = [0,1,2,3]
 worker_cnt = 1
-# score_name = "fc-action-ucf_crimes"
-score_name = "fc7"
+score_name = "fc-action-ucf_crimes"
+# score_name = "fc7"
 rgb_prefix = ""
 # video_folder = "../ucf_crimes_rgb/"
 # video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
