@@ -83,7 +83,7 @@ def eval_video(video_frame_list,output_folder_list,gpu_id):
                     # print('frame len ' + str(len(frames)))
 
                     scores = net.predict_single_c3d_rgb_stack(frames, score_name, frame_size=(171,128))
-                    # print('feature shape ' + str(scores.shape))
+                    print('feature shape ' + str(scores.shape))
                 else:
                     print("Sparse sampling has yet to be done.")
             frame_scores.append(scores)
