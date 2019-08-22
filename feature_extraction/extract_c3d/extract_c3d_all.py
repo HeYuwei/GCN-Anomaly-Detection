@@ -141,6 +141,7 @@ if __name__ == '__main__':
                 output_folder = video_folder.replace(root,root_output_folder)
                 video_list.append(video_folder)
                 print(video_folder)
+                print(output_folder)
                 output_folder_list.append(output_folder)
             else:
                 opath = os.path.join(root,d)
