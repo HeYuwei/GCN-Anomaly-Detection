@@ -17,9 +17,9 @@ rgb_prefix = ""
 # video_folder = "../ucf_crimes_rgb/"
 # video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/Anomaly-Videos-Part-1/Abuse/"
 root_video_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_pic/"
-root_output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_deploy/"
+root_output_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature/"
 modality = "c3d"
-deploy_file = "./ucf_crimes/c3d_feature.prototxt"
+deploy_file = "./ucf_crimes/c3d_deploy.prototxt"
 
 caffe_path = "../caffe_c3d/"
 
