@@ -45,11 +45,20 @@ class SigmoidCrossEntropyLoss(nn.Module):
         x = x.float()
         target = target.float()
 
-        print('tmp type ' + str(tmp.dtype))
-        print('x type ' + str(x.dtype))
-        print('target type ' + str(target.dtype))
+        # print('tmp type ' + str(tmp.dtype))
+        # print('x type ' + str(x.dtype))
+        # print('target type ' + str(target.dtype))
+        #
+        p1 = - x * target
+        p2 = torch.clamp(x, min=0)
+        p3 = torch.log(tmp)
 
-        return torch.mean(- x * target + torch.clamp(x, min=0) + torch.log(tmp))
+        p1 = p1.float()
+        p2 = p2.float()
+        p3 = p3.float()
+
+        return torch.mean(p1 + p2 + p3)
+        # return torch.mean(- x * target + torch.clamp(x, min=0) + torch.log(tmp))
 
 
 from sklearn.cluster import KMeans
