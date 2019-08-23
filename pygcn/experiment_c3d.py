@@ -93,7 +93,7 @@ def train_gcn(param):
     iter_size = 32
     ucf_crime_train = UCFCrimeSlow(videos_pkl_train, prediction_folder, feature_folder, modality,
                                graph_generator=soft_uniform_sampling, graph_generator_param=param)
-    train_loader = DataLoader(dataset=ucf_crime_train, batch_size=1, shuffle=True, num_workers=1)
+    train_loader = DataLoader(dataset=ucf_crime_train, batch_size=1, shuffle=False)
     model = NoiseFilter(nfeat=4096, nclass=1)
     criterion_supervised = SigmoidCrossEntropyLoss()
     criterion_unsupervised = SigmoidMAELoss()
