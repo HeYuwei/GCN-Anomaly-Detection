@@ -77,7 +77,7 @@ def get_centroids_of_kmean(data, k):
 def train_gcn(param):
     torch.cuda.empty_cache()
     # videos_pkl_train = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_train.pkl"
-    videos_pkl_train = "/mmu_ssd/liuchang03/heyuwei/Data/my_crime_train.pkl"
+    videos_pkl_train = "/mmu_ssd/liuchang03/heyuwei/GCN-Anomaly-Detection/pygcn/my_crime_train.pkl"
     # videos_pkl_test = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_test.pkl"
     # feature_folder = "/home/lnn/workspace/UCF_Crimes/c3d_features_all/_iter_4500/"
     feature_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature"
