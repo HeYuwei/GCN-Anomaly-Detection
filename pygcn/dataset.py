@@ -26,15 +26,17 @@ class UCFCrime(Dataset):
             feat_path = os.path.join(feature_folder, "%s_%s.npz" % (v, modality))
             pred_path = os.path.join(prediction_folder, "%s_%s.npz" % (v, modality))
             with np.load(feat_path, 'r') as f:
-                tmp = f["scores"].mean(axis=1)
+                tmp = f["features"].mean(axis=1)
                 tmp.resize((tmp.shape[0], tmp.shape[1]))
                 self.__feat__.append(np.array(tmp))
-            with np.load(pred_path, 'r') as f:
-                tmp = f["scores"].mean(axis=1)
-                if normalized:
-                    self.__pred__.append(1.0 / (1 + np.exp(-tmp)).flatten())
-                else:
-                    self.__pred__.append(np.array(tmp))
+
+            tmp = np.random.rand(self.__feat__[-1].shape[0],1)
+            # with np.load(pred_path, 'r') as f:
+            #     tmp = f["scores"].mean(axis=1)
+            if normalized:
+                self.__pred__.append(1.0 / (1 + np.exp(-tmp)).flatten())
+            else:
+                self.__pred__.append(np.array(tmp))
         assert len(self.__vid__) == len(self.__feat__) == len(self.__pred__)
 
     def __getitem__(self, index):

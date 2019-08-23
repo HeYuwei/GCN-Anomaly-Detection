@@ -76,10 +76,13 @@ def get_centroids_of_kmean(data, k):
 
 def train_gcn(param):
     torch.cuda.empty_cache()
-    videos_pkl_train = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_train.pkl"
-    videos_pkl_test = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_test.pkl"
-    feature_folder = "/home/lnn/workspace/UCF_Crimes/c3d_features_all/_iter_4500/"
-    prediction_folder = "/home/lnn/workspace/UCF_Crimes/c3d_features_1_high_conf_sampling_0.6/_iter_1000/"
+    # videos_pkl_train = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_train.pkl"
+    videos_pkl_train = "/mmu_ssd/liuchang03/heyuwei/Data/my_crime_train.pkl"
+    # videos_pkl_test = "/home/lnn/workspace/pygcn/pygcn/ucf_crime_test.pkl"
+    # feature_folder = "/home/lnn/workspace/UCF_Crimes/c3d_features_all/_iter_4500/"
+    feature_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_feature"
+    prediction_folder = "/mmu_ssd/liuchang03/heyuwei/Data/crime_c3d_score"
+    # prediction_folder = "/home/lnn/workspace/UCF_Crimes/c3d_features_1_high_conf_sampling_0.6/_iter_1000/"
     test_pred_gt_folder = "/home/lnn/data/UCF_Crimes/test_pred_groundtruth/"
     modality = "c3d"
     gpu_id = 0
@@ -105,6 +108,10 @@ def train_gcn(param):
         opt_scheduler.step()
         for step, data in enumerate(train_loader):
             (feat, adj, labeled_index_in_the_graph, labeled_index), pred, vid = data
+            print('feat shape ' + str(feat.shape))
+            print('adj shape ' + str(adj.shape))
+            print('labeled_index_in_the_graph: ' + str(labeled_index_in_the_graph))
+            print('labeled_index: ' + str(labeled_index))
             feat, adj, pred = Variable(feat), Variable(adj), Variable(pred)
 
             if not vid2mean_pred.has_key(vid[0]):
