@@ -94,6 +94,9 @@ class UCFCrimeSlow(Dataset):
         if self.__graph_func__:
             feat = self.__graph_func__(feat, pred, uncertainty, self.__graph_param__)
         #print feat[0].shape, feat[1].shape, feat[2].shape, feat[3].shape, pred.shape
+        print('feat')
+        print('pred')
+        print(vid)
         return feat, pred, vid
 
     def __len__(self):
