@@ -229,13 +229,18 @@ import random
 
 
 def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
+
     # interval=4, pos_threshold=0.8, neg_threshold=0.2,
     # min_cnt=2, max_cnt=64, reserved_thr=0.2):
+
+    print('start to uniform sampling')
 
     (interval, pos_threshold, neg_threshold, min_cnt, max_cnt, reserved_thr) = param
     local_samples = interval * 2
     labeled_index = list()
     threshold = np.sort(raw_uncertainty)[int(0.3 * len(raw_uncertainty))]
+
+    print('sampling stage 1')
 
     for i in range(len(raw_pred)):
         if raw_uncertainty[i] <= threshold:
@@ -266,6 +271,8 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
         assert (len(labeled_index) >= cut_begin + max_cnt * 2)
         labeled_index = labeled_index[cut_begin: cut_begin + max_cnt * 2]
 
+    print('sampling stage 2')
+
     labeled_index.sort()
     sample_index = set()
     for i in labeled_index:
@@ -284,6 +291,8 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     output_dimension = len(sample_index)
     # establish the adjacent matrix A^tilde
 
+    print('sampling stage 3')
+
     adj = np.zeros((output_dimension, output_dimension))
     for i in range(output_dimension):
         for j in range(output_dimension):
@@ -298,10 +307,15 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0
     adj_hat = np.dot(np.dot(d_inv_sqrt, adj), d_inv_sqrt)
 
+    print('sampling stage 4')
+
     # obtain the features of samples
     output_feat = np.zeros((output_dimension, input_feat.shape[-1]))
     for i in range(output_dimension):
         output_feat[i] = input_feat[sample_index[i]]
+
+    print('sampling end')
+
     return output_feat.astype(np.float32), adj_hat.astype(np.float32), \
            np.array(labeled_index_in_the_graph), np.array(labeled_index)
 
