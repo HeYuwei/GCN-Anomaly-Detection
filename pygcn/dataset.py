@@ -22,7 +22,7 @@ class UCFCrime(Dataset):
         with open(videos_pkl, 'rb') as f:
             videos = pickle.load(f)
         for v in videos:
-            self.__vid__.append(os.path.basename(v))
+            self.__vid__.append(v)
             feat_path = os.path.join(feature_folder, "%s_%s.npz" % (v, modality))
             pred_path = os.path.join(prediction_folder, "%s_%s.npz" % (v, modality))
             with np.load(feat_path, 'r') as f:
@@ -75,13 +75,18 @@ class UCFCrimeSlow(Dataset):
         pred_path = os.path.join(self.__prediction_folder__, "%s_%s.npz" % (vid, self.__modality__))
         with np.load(feat_path, 'r') as f:
             if self.__random_crop__:
-                tmp = f["scores"][:,randint(0, f["scores"].shape[1] - 1),:]
+                tmp = f["features"][:,randint(0, f["scores"].shape[1] - 1),:]
             else:
-                tmp = f["scores"].mean(axis=1)
+                tmp = f["features"].mean(axis=1)
             feat = np.resize(tmp, (tmp.shape[0], tmp.shape[1]))
+
         with np.load(pred_path, 'r') as f:
-            tmp = f["scores"].mean(axis=1).flatten()
-            uncertainty = f["scores"].var(axis=1).flatten()
+            score = np.random.rand(feat.shape[0],10,1)
+            tmp = score.mean(axis=1).flatten()
+            uncertainty = score.var(axis=1).flatten()
+
+            # tmp = f["scores"].mean(axis=1).flatten()
+            # uncertainty = f["scores"].var(axis=1).flatten()
             if self.__normalize__:
                 pred = 1.0 / (1 + np.exp(-tmp))
             else:
