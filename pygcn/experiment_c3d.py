@@ -163,10 +163,10 @@ def train_gcn(param):
                 #              criterion_unsupervised(output.view(1, -1),
                 #                                     mean_pred.view(1, -1)[:, sample_index])
 
-                loss_train = criterion_supervised(output.view(1, -1)[:, labeled_index_in_the_graph],
+                loss_train = criterion_supervised(output.view(1, -1)[:, labeled_index_in_the_graph].float(),
                                                   pred.view(1, -1)[:, labeled_index]).float() + \
                              criterion_unsupervised(output.view(1, -1).float(),
-                                                    mean_pred.view(1, -1)[:, sample_index])
+                                                    mean_pred.view(1, -1)[:, sample_index].float())
 
             avg_loss_train += loss_train
             iter_count += 1
