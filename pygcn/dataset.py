@@ -70,6 +70,7 @@ class UCFCrimeSlow(Dataset):
         self.__random_crop__ = random_crop
 
     def __getitem__(self, index):
+        print('start to load data')
         vid = self.__vid__[index]
         feat_path = os.path.join(self.__feature_folder__, "%s_%s.npz" % (vid, self.__modality__))
         pred_path = os.path.join(self.__prediction_folder__, "%s_%s.npz" % (vid, self.__modality__))
