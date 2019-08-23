@@ -233,7 +233,7 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     # interval=4, pos_threshold=0.8, neg_threshold=0.2,
     # min_cnt=2, max_cnt=64, reserved_thr=0.2):
 
-    print('start to uniform sampling')
+    # print('start to uniform sampling')
 
     (interval, pos_threshold, neg_threshold, min_cnt, max_cnt, reserved_thr) = param
     local_samples = interval * 2
