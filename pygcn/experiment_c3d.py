@@ -10,6 +10,10 @@ import torch
 import numpy as np
 from sklearn.metrics import roc_auc_score
 from matplotlib import pyplot as plt
+import os
+import sys
+
+sys.path.append('..')
 from pygcn.models import NoiseFilter
 from pygcn.dataset import UCFCrime, UCFCrimeSlow
 from pygcn.utils import soft_uniform_sampling, test_sampling, test_gcn_model, min_max_norm
