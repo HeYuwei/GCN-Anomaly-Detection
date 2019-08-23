@@ -41,6 +41,10 @@ class SigmoidCrossEntropyLoss(nn.Module):
 
     def forward(self, x, target):
         tmp = 1 + torch.exp(- torch.abs(x))
+        tmp = tmp.float()
+        x = x.float()
+        target = target.float()
+
         return torch.mean(- x * target + torch.clamp(x, min=0) + torch.log(tmp))
 
 
