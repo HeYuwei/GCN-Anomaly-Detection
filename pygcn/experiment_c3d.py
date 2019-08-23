@@ -114,11 +114,12 @@ def train_gcn(param):
             (feat, adj, labeled_index_in_the_graph, labeled_index), pred, vid = data
             # print('feat shape ' + str(feat.shape))
             # print('adj shape ' + str(adj.shape))
-            print('labeled_index_in_the_graph: ' + str(labeled_index_in_the_graph))
-            print('labeled_index: ' + str(labeled_index))
+            # print('labeled_index_in_the_graph: ' + str(labeled_index_in_the_graph))
+            # print('labeled_index: ' + str(labeled_index))
             feat, adj, pred = Variable(feat), Variable(adj), Variable(pred)
 
-            if not vid2mean_pred.has_key(vid[0]):
+            if vid[0] not in list(vid2mean_pred.keys()):
+            # if not vid2mean_pred.has_key(vid[0]):
                 vid2mean_pred[vid[0]] = pred.data.cpu().numpy().flatten().copy()
             mean_pred = Variable(torch.from_numpy(vid2mean_pred[vid[0]]), requires_grad=False)
 
