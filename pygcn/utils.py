@@ -448,4 +448,4 @@ if __name__ == '__main__':
         plt.savefig("/dev/shm/flow_fig/%s_%d.png" % (vid, 7642))
 
     evaluate_result(vid2ans)
-    print false_alarm_cnt * 100.0 / normal_cnt
+    print(str(false_alarm_cnt * 100.0 / normal_cnt))
