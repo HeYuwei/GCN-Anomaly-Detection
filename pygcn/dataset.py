@@ -75,7 +75,7 @@ class UCFCrimeSlow(Dataset):
         pred_path = os.path.join(self.__prediction_folder__, "%s_%s.npz" % (vid, self.__modality__))
         with np.load(feat_path, 'r') as f:
             if self.__random_crop__:
-                tmp = f["features"][:,randint(0, f["scores"].shape[1] - 1),:]
+                tmp = f["features"][:,randint(0, f["features"].shape[1] - 1),:]
             else:
                 tmp = f["features"].mean(axis=1)
             feat = np.resize(tmp, (tmp.shape[0], tmp.shape[1]))
