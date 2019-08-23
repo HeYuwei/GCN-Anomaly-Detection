@@ -139,7 +139,7 @@ if __name__ == '__main__':
             if d.endswith('x264'):
                 video_folder = os.path.join(root,d)
                 # print('root ' + str(root))
-                output_folder = video_folder.replace(root_video_folder,root_output_folder)
+                output_folder = root.replace(root_video_folder,root_output_folder)
                 video_list.append(video_folder)
                 print(video_folder)
                 print(output_folder)
