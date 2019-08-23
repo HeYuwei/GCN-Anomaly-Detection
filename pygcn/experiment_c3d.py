@@ -45,6 +45,10 @@ class SigmoidCrossEntropyLoss(nn.Module):
         x = x.float()
         target = target.float()
 
+        print('tmp type ' + str(tmp.dtype))
+        print('x type ' + str(x.dtype))
+        print('target type ' + str(target.dtype))
+
         return torch.mean(- x * target + torch.clamp(x, min=0) + torch.log(tmp))
 
 
