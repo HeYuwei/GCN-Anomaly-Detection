@@ -6,6 +6,8 @@ vid_path = '/mmu_ssd/liuchang03/heyuwei/svideos/Abuse001_x264.mp4'
 out_full_path = '/mmu_ssd/liuchang03/heyuwei/dense_flow/tmp_data'
 
 
+
+
 # current = current_process()
 # dev_id = int(current._identity[0]) - 1
 dev_id = 0
