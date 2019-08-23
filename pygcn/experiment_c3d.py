@@ -173,7 +173,8 @@ def get_sample_index(labeled_index, pred):
     for i in labeled_index:
         b = i - local_samples / 2
         e = i + 1 + local_samples / 2
-        for j in range(b, e):
+
+        for j in range(int(b), int(e)):
             if 0 <= j < len(pred.data.cpu().numpy().flatten()):
                 sample_index.add(j)
     sample_index = list(sample_index)
