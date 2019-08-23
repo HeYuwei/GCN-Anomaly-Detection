@@ -22,7 +22,7 @@ class UCFCrime(Dataset):
         with open(videos_pkl, 'rb') as f:
             videos = pickle.load(f)
         for v in videos:
-            self.__vid__.append(v)
+            self.__vid__.append(os.path.basename(v))
             feat_path = os.path.join(feature_folder, "%s_%s.npz" % (v, modality))
             pred_path = os.path.join(prediction_folder, "%s_%s.npz" % (v, modality))
             with np.load(feat_path, 'r') as f:
