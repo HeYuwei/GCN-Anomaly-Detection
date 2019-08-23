@@ -71,6 +71,9 @@ class UCFCrimeSlow(Dataset):
 
     def __getitem__(self, index):
         print('start to load data')
+
+        print('step 1')
+
         vid = self.__vid__[index]
         feat_path = os.path.join(self.__feature_folder__, "%s_%s.npz" % (vid, self.__modality__))
         pred_path = os.path.join(self.__prediction_folder__, "%s_%s.npz" % (vid, self.__modality__))
@@ -81,17 +84,20 @@ class UCFCrimeSlow(Dataset):
                 tmp = f["feautres"].mean(axis=1)
             feat = np.resize(tmp, (tmp.shape[0], tmp.shape[1]))
 
+        print('step 2')
         # with np.load(pred_path, 'r') as f:
         score = np.random.rand(feat.shape[0],10,1)
         tmp = score.mean(axis=1).flatten()
         uncertainty = score.var(axis=1).flatten()
 
+        print('step 3')
         # tmp = f["scores"].mean(axis=1).flatten()
         # uncertainty = f["scores"].var(axis=1).flatten()
         if self.__normalize__:
             pred = 1.0 / (1 + np.exp(-tmp))
         else:
             pred = np.array(tmp)
+        print('step 4')
         if self.__graph_func__:
             feat = self.__graph_func__(feat, pred, uncertainty, self.__graph_param__)
         #print feat[0].shape, feat[1].shape, feat[2].shape, feat[3].shape, pred.shape
