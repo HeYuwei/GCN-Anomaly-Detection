@@ -240,7 +240,6 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     labeled_index = list()
     threshold = np.sort(raw_uncertainty)[int(0.3 * len(raw_uncertainty))]
 
-    print('sampling stage 1')
 
     for i in range(len(raw_pred)):
         if raw_uncertainty[i] <= threshold:
@@ -271,14 +270,12 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
         assert (len(labeled_index) >= cut_begin + max_cnt * 2)
         labeled_index = labeled_index[cut_begin: cut_begin + max_cnt * 2]
 
-    print('sampling stage 2')
-
     labeled_index.sort()
     sample_index = set()
     for i in labeled_index:
         b = i - local_samples / 2
         e = i + 1 + local_samples / 2
-        for j in range(b, e):
+        for j in range(int(b), int(e)):
             if 0 <= j < len(raw_pred):
                 sample_index.add(j)
     sample_index = list(sample_index)
