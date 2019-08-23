@@ -112,8 +112,8 @@ def train_gcn(param):
         opt_scheduler.step()
         for step, data in enumerate(train_loader):
             (feat, adj, labeled_index_in_the_graph, labeled_index), pred, vid = data
-            print('feat shape ' + str(feat.shape))
-            print('adj shape ' + str(adj.shape))
+            # print('feat shape ' + str(feat.shape))
+            # print('adj shape ' + str(adj.shape))
             print('labeled_index_in_the_graph: ' + str(labeled_index_in_the_graph))
             print('labeled_index: ' + str(labeled_index))
             feat, adj, pred = Variable(feat), Variable(adj), Variable(pred)

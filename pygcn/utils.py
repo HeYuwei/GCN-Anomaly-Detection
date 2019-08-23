@@ -288,7 +288,7 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     output_dimension = len(sample_index)
     # establish the adjacent matrix A^tilde
 
-    print('sampling stage 3')
+    # print('sampling stage 3')
 
     adj = np.zeros((output_dimension, output_dimension))
     for i in range(output_dimension):
@@ -304,14 +304,14 @@ def soft_uniform_sampling(input_feat, raw_pred, raw_uncertainty, param):
     d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0
     adj_hat = np.dot(np.dot(d_inv_sqrt, adj), d_inv_sqrt)
 
-    print('sampling stage 4')
+    # print('sampling stage 4')
 
     # obtain the features of samples
     output_feat = np.zeros((output_dimension, input_feat.shape[-1]))
     for i in range(output_dimension):
         output_feat[i] = input_feat[sample_index[i]]
 
-    print('sampling end')
+    # print('sampling end')
 
     return output_feat.astype(np.float32), adj_hat.astype(np.float32), \
            np.array(labeled_index_in_the_graph), np.array(labeled_index)
