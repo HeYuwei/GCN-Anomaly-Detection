@@ -70,7 +70,7 @@ class UCFCrimeSlow(Dataset):
         self.__random_crop__ = random_crop
 
     def __getitem__(self, index):
-        print('start to load data')
+        # print('start to load data')
 
         vid = self.__vid__[index]
         feat_path = os.path.join(self.__feature_folder__, "%s_%s.npz" % (vid, self.__modality__))
@@ -82,7 +82,7 @@ class UCFCrimeSlow(Dataset):
                 tmp = f["feautres"].mean(axis=1)
             feat = np.resize(tmp, (tmp.shape[0], tmp.shape[1]))
 
-        print('f feature shape ' + str(feat.shape))
+        # print('f feature shape ' + str(feat.shape))
 
         # with np.load(pred_path, 'r') as f:
         score = np.random.rand(feat.shape[0],10,1)
@@ -100,7 +100,7 @@ class UCFCrimeSlow(Dataset):
         # print(feat[0].shape, feat[1].shape, feat[2].shape, feat[3].shape, pred.shape)
         # print(feat.shape)
         # print('pred')
-        print(vid)
+        # print(vid)
         return feat, pred, vid
 
     def __len__(self):
