@@ -84,17 +84,19 @@ class UCFCrimeSlow(Dataset):
 
         # print('f feature shape ' + str(feat.shape))
 
-        # with np.load(pred_path, 'r') as f:
-        score = np.random.rand(feat.shape[0],10,1)
-        tmp = score.mean(axis=1).flatten()
-        uncertainty = score.var(axis=1).flatten()
+        with np.load(pred_path, 'r') as f:
+            # score = np.random.rand(feat.shape[0],10,1)
+            # tmp = score.mean(axis=1).flatten()
+            # uncertainty = score.var(axis=1).flatten()
 
-        # tmp = f["scores"].mean(axis=1).flatten()
-        # uncertainty = f["scores"].var(axis=1).flatten()
-        if self.__normalize__:
-            pred = 1.0 / (1 + np.exp(-tmp))
-        else:
-            pred = np.array(tmp)
+            tmp = f["scores"].mean(axis=1).flatten()
+            uncertainty = f["scores"].var(axis=1).flatten()
+            if self.__normalize__:
+                pred = 1.0 / (1 + np.exp(-tmp))
+            else:
+                pred = np.array(tmp)
+
+
         if self.__graph_func__:
             feat = self.__graph_func__(feat, pred, uncertainty, self.__graph_param__)
         # print(feat[0].shape, feat[1].shape, feat[2].shape, feat[3].shape, pred.shape)

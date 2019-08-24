@@ -12,13 +12,12 @@ from sklearn.metrics import roc_auc_score
 from matplotlib import pyplot as plt
 import os
 import sys
-
 sys.path.append('..')
-from pygcn.models import NoiseFilter
-from pygcn.dataset import UCFCrime, UCFCrimeSlow
-from pygcn.utils import soft_uniform_sampling, test_sampling, test_gcn_model, min_max_norm
-from pygcn.utils import build_test_graph
-from pygcn.utils import uniform_sampling
+from models import NoiseFilter
+from dataset import UCFCrime, UCFCrimeSlow
+from utils import soft_uniform_sampling, test_sampling, test_gcn_model, min_max_norm
+from utils import build_test_graph
+from utils import uniform_sampling
 
 from torch import nn
 
