@@ -6,4 +6,4 @@ for root,dirs,files in os.walk(mpath):
         if dir == 'opencv2':
             s_path = os.path.join(root,dir)
             print(s_path)
-            os.system('cp -r' + s_path + '/usr/local/include/opencv2/')
+            os.system('cp -r' + s_path + '/usr/local/include')
