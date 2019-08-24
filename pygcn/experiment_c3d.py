@@ -12,7 +12,6 @@ from sklearn.metrics import roc_auc_score
 from matplotlib import pyplot as plt
 import os
 import sys
-
 sys.path.append('..')
 from pygcn.models import NoiseFilter
 from pygcn.dataset import UCFCrime, UCFCrimeSlow
