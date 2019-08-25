@@ -1,6 +1,6 @@
 import os
 
-mpath = '/mmu_ssd/liuchang03/heyuwei/temporal-segment-networks/3rd-party/opencv_contrib-3.4.5/modules'
+mpath = '/mmu_ssd/liuchang03/heyuwei/temporal-segment-networks/3rd-party/opencv-3.4.5/modules'
 for root,dirs,files in os.walk(mpath):
     for dir in dirs:
         if dir == 'opencv2':
